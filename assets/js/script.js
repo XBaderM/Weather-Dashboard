@@ -46,3 +46,26 @@ function getListCity(coordinates) {
         }
     })
 }
+
+function getCurrentWeather(data) {
+    $(".results-panel").addClass("visible");
+
+    $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+    $("#temperature")[0].textContent = "Temperature: " + data.current.temp.toFixed(1) + " \u2109";
+    $("#humidity")[0].textContent = "Humidity: " + data.current.humidity + "% ";
+    $("#wind-speed")[0].textContent = "Wind Speed: " + data.current.wind_speed.toFixed(1) + " MPH";
+    $("#uv-index")[0].textContent = "  " + data.current.uvi;
+
+    if (data.current.uvi < 3) {
+        $("#uv-index").removeClass("moderate severe");
+        $("#uv-index").addClass("favorable");
+    } else if (data.current.uvi < 6) {
+        $("#uv-index").removeClass("favorable severe");
+        $("#uv-index").addClass("moderate");
+    } else {
+        $("#uv-index").removeClass("favorable moderate");
+        $("#uv-index").addClass("severe");
+    }
+
+    getFutureWeather(data);
+}
