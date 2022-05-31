@@ -89,3 +89,14 @@ function getFutureWeather(data) {
         $(currentSelector)[0].textContent = "Humidity: " + futureWeather.humidity + "%";
     }
 }
+
+// This function applies title case to a city name if there is more than one word.
+function titleCase(city) {
+    var updatedCity = city.toLowerCase().split(" ");
+    var returnedCity = "";
+    for (var i = 0; i < updatedCity.length; i++) {
+        updatedCity[i] = updatedCity[i][0].toUpperCase() + updatedCity[i].slice(1);
+        returnedCity += " " + updatedCity[i];
+    }
+    return returnedCity;
+}
