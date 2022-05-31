@@ -100,3 +100,29 @@ function titleCase(city) {
     }
     return returnedCity;
 }
+
+// This converts the UNIX time that is received from the server.
+function convertUnixTime(data, index) {
+    const dateObject = new Date(data.daily[index + 1].dt * 1000);
+
+    return (dateObject.toLocaleDateString());
+}
+
+$("#search-button").on("click", function (e) {
+    e.preventDefault();
+
+    findCity();
+
+    $("form")[0].reset();
+})
+
+$(".city-list-box").on("click", ".city-name", function () {
+
+    var coordinates = (localStorage.getItem($(this)[0].textContent)).split(" ");
+    coordinates[0] = parseFloat(coordinates[0]);
+    coordinates[1] = parseFloat(coordinates[1]);
+
+    $("#city-name")[0].textContent = $(this)[0].textContent + " (" + moment().format('M/D/YYYY') + ")";
+
+    getListCity(coordinates);
+})
