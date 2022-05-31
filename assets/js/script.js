@@ -1,7 +1,9 @@
+localStorage.clear();
+
 function findCity() {
     var cityName = titleCase($("#cityName")[0].value.trim());
 
-    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=71311474f5b26fb7bbfa0bc1985b90cd";
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=dbad5313d975bc17f4276321b086a394";
 
     fetch(apiURL).then(function (response) {
         if (response.ok) {
@@ -18,7 +20,7 @@ function findCity() {
 
                 localStorage.setItem(cityName, latLonPair);
 
-                apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=71311474f5b26fb7bbfa0bc1985b90cd";
+                apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=dbad5313d975bc17f4276321b086a394";
 
                 fetch(apiURL).then(function (newResponse) {
                     if (newResponse.ok) {
